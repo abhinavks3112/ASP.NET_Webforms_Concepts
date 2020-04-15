@@ -13,7 +13,7 @@ namespace WebFormBasics
     {
         /* Author's Note: Keep only one of the below region uncommented at a time to see its effect */
 
-        #region---- Without viewstate-----
+        #region---Without Viewstate-----
 
         ///* Everytime this will be initialized to zero  */
         //int _clicksCount = 0;
@@ -41,13 +41,44 @@ namespace WebFormBasics
 
         #endregion
 
-        #region -----With ViewState-----
+        #region ---With ViewState-----
 
-        /* Initializing count to 1 */         
-        int _clicksCount = 1;
+        ///* Initializing count to 1 */         
+        //int _clicksCount = 1;
 
-        /* Store magic string or string literal in variable for strong typing and avoiding typing mistakes in multiple places */
-        const string COUNT_STORED_IN_VIEWSTATE_KEY = "Count";
+        ///* Store magic string or string literal in variable for strong typing and avoiding typing mistakes in multiple places */
+        //const string COUNT_STORED_IN_VIEWSTATE_KEY = "Count";
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        txtCount.Text = "0";
+        //    }
+        //}
+
+        //protected void btnCount_Click(object sender, EventArgs e)
+        //{
+        //    /* On Every click, this will be incremented by 1, but now we are storing _clicksCount updated value in ViewState,
+        //     so, it will take the previous value stored in ViewState and update it.
+        //     To see viewstate in webpage, right click on the page and select page source, then a hidden field named
+        //     viewstate is visible with value stored in base64 encrypted form
+        //     */
+        //     if(ViewState[COUNT_STORED_IN_VIEWSTATE_KEY] != null)
+        //    {
+        //        _clicksCount += Convert.ToInt32(ViewState[COUNT_STORED_IN_VIEWSTATE_KEY]);
+        //    }
+
+        //    txtCount.Text = Convert.ToString(_clicksCount);
+
+        //    /* Keep updated count in ViewState as it transfer with each request and response so we can know the current
+        //     count in next request.
+        //     Also, first time ViewState for this key will be null, so here it will also get intitialized for first time also*/
+        //    ViewState[COUNT_STORED_IN_VIEWSTATE_KEY] = _clicksCount;
+        //}
+
+        #endregion
+
+        #region---With ASP.NET Server Control and their associated viewstate---
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -58,22 +89,17 @@ namespace WebFormBasics
 
         protected void btnCount_Click(object sender, EventArgs e)
         {
-            /* On Every click, this will be incremented by 1, but since we are not storing _clicksCount updated value,
-             it will take the initial value of zero and update it to 1 and not anything else.
-             To see viewstate in webpage, right click on the page and select page source, then a hidden field named
-             viewstate is visible with value stored in base64 encrypted form
+            /* 
+             * Every ASP.NET server control has their own viewstate associated with them, so we don't need to create a
+             * separate viewstate, instead, we can take the previous value from the control's viewstate itself.*/
+            /* 
+             * Note: Data entered in controls is sent with each request and restored to controls in Page_Init.
+             * The data in these controls is then available in the Page_Load(), Button_click and many more events that occurs
+             * after page_init event.
              */
-             if(ViewState[COUNT_STORED_IN_VIEWSTATE_KEY] != null)
-            {
-                _clicksCount += Convert.ToInt32(ViewState[COUNT_STORED_IN_VIEWSTATE_KEY]);
-            }
+            int _clicksCount = Convert.ToInt32(txtCount.Text) + 1;
 
             txtCount.Text = Convert.ToString(_clicksCount);
-
-            /* Keep updated count in ViewState as it transfer with each request and response so we can know the current
-             count in next request.
-             Also, first time ViewState for this key will be null, so here it will also get intitialized for first time also*/
-            ViewState[COUNT_STORED_IN_VIEWSTATE_KEY] = _clicksCount;
         }
 
         #endregion
