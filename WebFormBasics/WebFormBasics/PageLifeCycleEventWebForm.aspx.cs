@@ -58,7 +58,18 @@ namespace WebFormBasics
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Response.Write("ASP.NET Server Control Event" + "<br />");
+            Response.Write("ASP.NET Server Control Event: Postback Event" + "<br />");
+            Response.Write("Control's ViewState value: " + ViewStateValue() + "<br /><br /><hr><br />");
+        }
+
+        protected void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            /*
+             * To convert it to postback event set its AutoPostBack property to true.
+             * And then to postback this event, after inputting text, either by pressing enter
+             * or moving the focus away from textbox, eg. by pressing tab, or clicking somewhere else.
+             */
+            Response.Write("ASP.NET Server Control Event: Cached Event" + "<br />");
             Response.Write("Control's ViewState value: " + ViewStateValue() + "<br /><br /><hr><br />");
         }
     }
