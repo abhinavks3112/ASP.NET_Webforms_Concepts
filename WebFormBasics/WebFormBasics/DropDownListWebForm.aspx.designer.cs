@@ -42,6 +42,24 @@ namespace WebFormBasics
         protected global::System.Web.UI.WebControls.DropDownList ddlCity;
 
         /// <summary>
+        /// lblCountries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCountries;
+
+        /// <summary>
+        /// ddlCountries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountries;
+
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>

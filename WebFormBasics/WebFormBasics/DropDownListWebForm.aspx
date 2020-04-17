@@ -9,11 +9,16 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="lblCity" runat="server" Text="City: "></asp:Label>
+            <asp:Label ID="lblCity" runat="server" Text="City: "></asp:Label>&nbsp;
             <asp:DropDownList ID="ddlCity" runat="server">
             </asp:DropDownList>
             <%-- <asp:DropDownList ID="ddlCity" runat="server" DataTextField="CityName" DataValueField="CityId">
             </asp:DropDownList>--%>
+            <br />
+            <br />
+            <asp:Label ID="lblCountries" runat="server" Text="Country: "></asp:Label>
+&nbsp;<asp:DropDownList ID="ddlCountries" runat="server">
+            </asp:DropDownList>
             <br />
             <br />
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
