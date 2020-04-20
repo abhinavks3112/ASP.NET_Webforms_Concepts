@@ -31,7 +31,7 @@ namespace WebFormBasics
             Response.Write("Page_InitComplete Event" + "<br />");
             Response.Write("Control's ViewState value: " + ViewStateValue() + "<br /><br /><hr><br />");
         }
-        protected void Page_Page_PreLoad(object sender, EventArgs e)
+        protected void Page_PreLoad(object sender, EventArgs e)
         {
             Response.Write("Page_Page_PreLoad Event" + "<br />");
             Response.Write("Control's ViewState value: " + ViewStateValue() + "<br /><br /><hr><br />");
