@@ -131,6 +131,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="PageLifeCycleEventWebForm.aspx" />
+    <Content Include="PageNavigatedToWebForm.aspx" />
+    <Content Include="PageNavigationTechWebForm.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -228,6 +230,20 @@
     </Compile>
     <Compile Include="PageLifeCycleEventWebForm.aspx.designer.cs">
       <DependentUpon>PageLifeCycleEventWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageNavigatedToWebForm.aspx.cs">
+      <DependentUpon>PageNavigatedToWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageNavigatedToWebForm.aspx.designer.cs">
+      <DependentUpon>PageNavigatedToWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageNavigationTechWebForm.aspx.cs">
+      <DependentUpon>PageNavigationTechWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageNavigationTechWebForm.aspx.designer.cs">
+      <DependentUpon>PageNavigationTechWebForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
