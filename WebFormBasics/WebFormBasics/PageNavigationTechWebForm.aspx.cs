@@ -16,6 +16,10 @@ namespace WebFormBasics
         private string amperSand = "=";
         private string userNameText = "UserName";
         private string userEmailText = "UserEmail";
+        private string userInfoCookieName = "UserInfo";
+        private string cookieNotSupportedBrowserMessage = "Your browser does not support cookies. Please install one of the modern browsers.";
+        private string cookieDisabledOnBrowserMessage = "We have detected that cookies are disabled in your browser. Please enable cookies";
+        private const string TOTAL_USER_SESSIONS_KEY = "TotalUserSessions";
         private void UpdateStatus()
         {
             /*
@@ -45,10 +49,69 @@ namespace WebFormBasics
                 return txtEmail.Text;
             }
         }
+        public string UserInfoCookie
+        {
+            get
+            {
+                return userInfoCookieName;
+            }
+        }
+        public string UserNameCookie
+        {
+            get
+            {
+                return userNameText;
+            }
+        }
+        public string UserEmailCookie
+        {
+            get
+            {
+                return userEmailText;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write("Number of users online is " + Application[TOTAL_USER_SESSIONS_KEY].ToString() + "\n");
+            if (!IsPostBack)
+            {
+                // Check if the client browser supports cookie
+                if (Request.Browser.Cookies)
+                {
+                    /*
+                     * Check if cookie is enabled in client browser
+                     */
 
+                    // If querystring not present then user has reached this url for the first time
+                    if (Request.QueryString["CheckCookie"] == null)
+                    { 
+                        // Create a test cookie
+                        HttpCookie cookie = new HttpCookie("TestCookie", "1");
+                        // Try to send and save it on client
+                        Response.Cookies.Add(cookie);
+
+                        // Redirect to same browser with a random query string
+                        Response.Redirect("PageNavigationTechWebForm?CheckCookie=1");
+                    }
+                    /*
+                    * Check if querystring is present in current url, which if present means we have
+                    * returned a test cookie in last request and trying to read it.
+                    */
+                    else
+                    {
+                        HttpCookie cookie = Request.Cookies["TestCookie"];
+                        if(cookie == null)
+                        {
+                            lblStatus.Text = cookieDisabledOnBrowserMessage;
+                        }
+                    }
+                }
+                else
+                {
+                    lblStatus.Text = cookieNotSupportedBrowserMessage;
+                }
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -97,6 +160,52 @@ namespace WebFormBasics
              */
             Response.Redirect(path_PageNavigateToWebform + questionMark + userNameText + equalSign + Server.UrlEncode(txtName.Text)
                 + amperSand + userEmailText + equalSign + Server.UrlEncode(txtEmail.Text));
+        }
+
+        protected void btnCookies_Click(object sender, EventArgs e)
+        {
+            HttpCookie cookie = new HttpCookie(userInfoCookieName);
+            cookie[userNameText] = txtName.Text;
+            cookie[userEmailText] = txtEmail.Text;
+
+            // When expiry is added to cookies it becomes Persistent cookies otherwise non-persistent cookies
+            cookie.Expires = DateTime.Now.AddDays(30);
+
+            Response.Cookies.Add(cookie);
+
+            Response.Redirect(path_PageNavigateToWebform);
+        }
+
+        protected void btnSession_Click(object sender, EventArgs e)
+        {
+            /*
+             * Session state mode by default is InProc meaning session state data is stored in server memory for specified session
+             * duration (by default, 20 minutes). We can change this duration in web.config > configuration > system.web > sessionstate -> mode attribute
+             * plus timeout attribute and setting the time in numerical minutes.
+             * Session state data are available across all pages within the single session.
+             * These are like SINGLE USER's Global Data.
+             */
+            Session[userNameText] = txtName.Text;
+            Session[userEmailText] = txtEmail.Text;
+
+            /* If cookieless session is used, relative url is a must since Session Id is passed in url as query string and in
+             * absolute url session id will get omitted and session won't work correctly.
+             * Here, we are using relative path only.            
+             */
+            Response.Redirect(path_PageNavigateToWebform);
+        }
+
+        protected void btnApplication_Click(object sender, EventArgs e)
+        {
+            /*
+             * Application state data is stored in server memory from the time the application starts and until it stops.
+             * Application state data are available across all pages across all sessions.
+             * These are like MULTIPLE USER's Global Data.
+             */
+            Application[userNameText] = txtName.Text;
+            Application[userEmailText] = txtEmail.Text;
+
+            Response.Redirect(path_PageNavigateToWebform);
         }
     }
 }

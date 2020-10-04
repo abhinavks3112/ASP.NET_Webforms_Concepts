@@ -123,6 +123,33 @@ namespace WebFormBasics
         protected global::System.Web.UI.WebControls.Button btnQueryString;
 
         /// <summary>
+        /// btnCookies control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCookies;
+
+        /// <summary>
+        /// btnSession control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSession;
+
+        /// <summary>
+        /// btnApplication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApplication;
+
+        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>

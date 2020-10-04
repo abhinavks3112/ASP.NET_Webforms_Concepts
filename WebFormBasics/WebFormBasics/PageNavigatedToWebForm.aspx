@@ -12,11 +12,11 @@
         <div>
             <h3>This is second webform on same server.</h3>
             <asp:Label ID="lblName" runat="server" Text="Name" Width="100px"></asp:Label>
-            <asp:Label ID="lblNameValue" runat="server" Text="lblName" Width="100px"></asp:Label>
+            <asp:Label ID="lblNameValue" runat="server" Width="100px"></asp:Label>
             <br />
             <br />
             <asp:Label ID="lblEmail" runat="server" Text="Email" Width="100px"></asp:Label>
-            <asp:Label ID="lblEmailValue" runat="server" Text="lblEmail" Width="100px"></asp:Label>
+            <asp:Label ID="lblEmailValue" runat="server" Width="100px"></asp:Label>
             <br />
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" />

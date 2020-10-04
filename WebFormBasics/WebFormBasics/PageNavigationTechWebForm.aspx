@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PageNavigationTechWebForm.aspx.cs" Inherits="WebFormBasics.PageNavigationTechWebForm" %>
-
+<%-- We can disable session state on Page level by setting attribute EnableSessionState="False" --%>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,9 +55,18 @@
             <asp:Button ID="btnQueryString" runat="server" OnClick="btnQueryString_Click" Text="Query String" />
             <br />
             <br />
+            <asp:Button ID="btnCookies" runat="server" OnClick="btnCookies_Click" Text="Cookies" />
+            <br />
+            <br />
+            <asp:Button ID="btnSession" runat="server" OnClick="btnSession_Click" Text="Session" />
+            <br />
+            <br />
+            <asp:Button ID="btnApplication" runat="server" OnClick="btnApplication_Click" Text="Application" />
+            <br />
+            <br />
             <input id="btnHTML" type="button" onclick="OpenInNewWindow()" value="HTML Button Window Open" /><br />
             <br />
-            <asp:Label ID="lblStatus" runat="server" Text="Status"></asp:Label>
+            <asp:Label ID="lblStatus" runat="server" Text="Status" ForeColor="Red" Font-Bold></asp:Label>
             <br />
 
         </div>

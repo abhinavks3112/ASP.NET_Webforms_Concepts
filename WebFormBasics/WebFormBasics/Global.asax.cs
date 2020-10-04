@@ -29,14 +29,22 @@ namespace WebFormBasics
 
         void Session_Start(object sender, EventArgs e)
         {
+            // Thread Lock for synchronization
+            Application.Lock();
             // Increment Total User Sessions by 1
             Application[TOTAL_USER_SESSIONS_KEY] = Convert.ToInt32(Application[TOTAL_USER_SESSIONS_KEY]) + 1;
+            // Thread UnLock for synchronization
+            Application.UnLock();
         }
 
         void Session_End(object sender, EventArgs e)
         {
+            // Thread Lock for synchronization
+            Application.Lock();
             // Decrement Total User Sessions by 1
             Application[TOTAL_USER_SESSIONS_KEY] = Convert.ToInt32(Application[TOTAL_USER_SESSIONS_KEY]) - 1;
+            // Thread UnLock for synchronization
+            Application.UnLock();
         }
     }
 }
