@@ -165,8 +165,8 @@ namespace WebFormBasics
         protected void btnCookies_Click(object sender, EventArgs e)
         {
             HttpCookie cookie = new HttpCookie(userInfoCookieName);
-            cookie[userNameText] = txtName.Text;
-            cookie[userEmailText] = txtEmail.Text;
+            cookie[userNameText] = Server.UrlEncode(txtName.Text);
+            cookie[userEmailText] = Server.UrlEncode(txtEmail.Text);
 
             // When expiry is added to cookies it becomes Persistent cookies otherwise non-persistent cookies
             cookie.Expires = DateTime.Now.AddDays(30);

@@ -65,12 +65,12 @@ namespace WebFormBasics
              * Second Method using : Query strings
              * When using Window.Open with query strings
              */
-            //lblNameValue.Text = Request.QueryString["Name"];
-            //lblEmailValue.Text = Request.QueryString["Email"];
+            //lblNameValue.Text = Server.UrlDecode(Request.QueryString["Name"]);
+            //lblEmailValue.Text = Server.UrlDecode(Request.QueryString["Email"]);
 
             //OR
-            //lblNameValue.Text = Request.QueryString["UserName"];
-            //lblEmailValue.Text = Request.QueryString["UserEmail"];
+            //lblNameValue.Text = Server.UrlDecode(Request.QueryString["UserName"]);
+            //lblEmailValue.Text = Server.UrlDecode(Request.QueryString["UserEmail"]);
 
             /*
              * Third Method using : context.handler
@@ -99,12 +99,12 @@ namespace WebFormBasics
             /*
              * Fourth Method using cookies
              */
-            //HttpCookie cookie = Request.Cookies["UserInfo"];
-            //if(cookie != null)
-            //{
-            //    lblNameValue.Text = cookie["UserName"];
-            //    lblEmailValue.Text = cookie["UserEmail"];
-            //}
+            HttpCookie cookie = Request.Cookies["UserInfo"];
+            if (cookie != null)
+            {
+                lblNameValue.Text = Server.UrlDecode(cookie["UserName"]);
+                lblEmailValue.Text = Server.UrlDecode(cookie["UserEmail"]);
+            }
 
             /*
              * Fifth Method using session
@@ -114,7 +114,7 @@ namespace WebFormBasics
              * converting it to other data type which will lead to runtime exception. Session data could be null due 
              * to multiple reasons, one being session timeout.
              */
-             if(Session["UserName"] != null)
+            if (Session["UserName"] != null)
                 lblNameValue.Text = Session["UserName"].ToString();
             if (Session["UserEmail"] != null)
                 lblEmailValue.Text = Session["UserEmail"].ToString();
