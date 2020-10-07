@@ -134,6 +134,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="InternalServerErrorPage.aspx" />
+    <Content Include="LogExceptionAsInformationWebForm.aspx" />
     <Content Include="PageLifeCycleEventWebForm.aspx" />
     <Content Include="PageNavigatedToWebForm.aspx" />
     <Content Include="PageNavigationTechWebForm.aspx" />
@@ -258,6 +259,14 @@
     <Compile Include="InternalServerErrorPage.aspx.designer.cs">
       <DependentUpon>InternalServerErrorPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LogExceptionAsInformationWebForm.aspx.cs">
+      <DependentUpon>LogExceptionAsInformationWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogExceptionAsInformationWebForm.aspx.designer.cs">
+      <DependentUpon>LogExceptionAsInformationWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logger.cs" />
     <Compile Include="PageLifeCycleEventWebForm.aspx.cs">
       <DependentUpon>PageLifeCycleEventWebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
