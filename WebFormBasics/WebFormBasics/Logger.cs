@@ -7,6 +7,7 @@ using System.Web;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Net.Mail;
 
 namespace WebFormBasics
 {
@@ -81,8 +82,50 @@ namespace WebFormBasics
                 // Log to window's event viewer
                 LogToEventViewer(eventLogEntryType, exceptionMessage.ToString());
             }
-            }
 
-        
+            string sendEmail = ConfigurationManager.AppSettings["SendEmail"];
+
+            if (sendEmail.ToLower() == "true")
+            {
+                // Log to window's event viewer
+                SendEmail(exceptionMessage.ToString());
+            }
+        }
+
+        // Send automated email with exception info
+        public static void SendEmail(string messageBody)
+        {
+            // Create message
+            MailMessage message = new MailMessage("montyks3112@gmail.com", "montyks3112@gmail.com");
+            message.Subject = "Exception";
+            message.Body = messageBody;
+
+            /*
+             * Better configurable way is to specify it in web config.
+             * <system.net>
+		            <mailSettings>
+			            <smtp deliveryMethod="Network">
+				            <network host="smtp.gmail.com" port="587" userName="abc@gmail.com" password="abcpassword" enableSsl="true"/>
+			            </smtp>
+		            </mailSettings>
+	            </system.net>
+             */
+            //// Specify smtp server and port
+            //SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);            
+            //// If the smtp server uses https then we need to enable ssl
+            //smtpClient.EnableSsl = true;
+            //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //// Provide the credentia for server
+            //smtpClient.Credentials = new System.Net.NetworkCredential()
+            //{
+            //    UserName = "abc@gmail.com",
+            //    Password = "abcpassword"
+            //};
+
+            // All the settings will automatically be picked up from web config when sending mail
+            SmtpClient smtpClient = new SmtpClient();
+            // Send the message
+            smtpClient.Send(message);
+        }
     }
 }
