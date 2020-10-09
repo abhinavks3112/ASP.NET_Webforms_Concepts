@@ -1,5 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExceptionHandlingWebForm.aspx.cs" Inherits="WebFormBasics.ExceptionHandlingWebForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Trace="true" CodeBehind="ExceptionHandlingWebForm.aspx.cs" Inherits="WebFormBasics.ExceptionHandlingWebForm" %>
 <%-- For page level custom error page, we use ErrorPage attribute above  --%>
+<%-- For page level trace enable disable, we use Trace attribute above  --%>
 
 <!DOCTYPE html>
 

@@ -31,19 +31,44 @@ namespace WebFormBasics
             {
                 Logger.Log(formatException, EventLogEntryType.Information);
                 lblMessage.ForeColor = Color.Red;
-                lblMessage.Text = "Only Numbers are allowed";            
+                lblMessage.Text = "Only Numbers are allowed";
+                if (Trace.IsEnabled)
+                {
+                    /*
+                     * Trace has advantage for Response.Write for debugging in that it is by default only accessible by
+                     * developer(in trace.axd file) and not end user, provided pageOutput="false", that is we are not appending
+                     * trace output on the webpage itself.
+                     * Also, all Response.Write used for debugging needs to removed, before the application is deployed, but in
+                     * case of tracing we just need to disable it in web.config, provide it is not enabled on page level.
+                     * 
+                     */
+                    // Executing Trace.Write or Trace.Warn without checking Trace is enabled will not throw any exception
+                    // Only difference with Trace.Write is that, warn's message is in red, write's message is in black
+                    Trace.Write(formatException.Message);
+                }
             }
             catch (OverflowException overflowException)
             {
                 Logger.Log(overflowException, EventLogEntryType.Information);
                 lblMessage.ForeColor = Color.Red;
                 lblMessage.Text = "Numbers must be between " + Int32.MinValue.ToString() + " and " + Int32.MaxValue.ToString();
+
+                if (Trace.IsEnabled)
+                {
+                    // Only difference with Trace.Write is that, warn's message is in red, write's message is in black
+                    Trace.Warn(overflowException.Message);
+                }
             }
             catch (DivideByZeroException divideByZeroException)
             {
                 Logger.Log(divideByZeroException);
                 lblMessage.ForeColor = Color.Red;
                 lblMessage.Text = "Denominator cannot be zero";
+                if (Trace.IsEnabled)
+                {
+                    // Only difference with Trace.Write is that, warn's message is in red, write's message is in black
+                    Trace.Warn(divideByZeroException.Message);
+                }
             }
             catch (Exception exception)
             {

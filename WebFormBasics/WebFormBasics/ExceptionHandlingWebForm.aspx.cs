@@ -10,7 +10,7 @@ namespace WebFormBasics
 {
     public partial class ExceptionHandlingWebForm : System.Web.UI.Page
     {
-        private string countriesXMLRelativePath = "~/Data/Countries1.xml";
+        private string countriesXMLRelativePath = "~/Data/Countries.xml";
         private string errorDisplayPageRelativePath = "~/Error.aspx";
         protected void Page_Load(object sender, EventArgs e)
         {
